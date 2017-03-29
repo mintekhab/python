@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import pyinotify
 import socket
 import re
@@ -14,7 +15,7 @@ class EventHandler (pyinotify.ProcessEvent):
         super(EventHandler, self).__init__(*args, **kwargs)
         self.file_path = file_path
         self._last_position = 0
-        self.statsd_host = 'statsd.us-west-1.prod-p.expedia.com'
+        self.statsd_host = 'statsd.us-west-2.prod-p.expedia.com'
         self.statsd_port = 8125
         self.prefix = 'mongodb.reviewsbrandsummary.ip-10-8-134-81'
         self.metrics = 'responsetime'
@@ -34,12 +35,12 @@ class EventHandler (pyinotify.ProcessEvent):
             groups = (self._logpat.search(line.strip()) for line in loglines)
             for g in groups:
                 if g:
-                    #print g.string 
+                    #print g.string
                     if self.p1.search(g.string):
                        data = "%s.%s:%s|g" % (self.prefix,self.metrics,str(self.p1.findall(g.string)[0]))
                        print data
 handler = EventHandler('/var/log/mongodb/mongodb.log')
 notifier = pyinotify.Notifier(wm, handler)
 
-wm.add_watch(handler.file_path, mask)        
+wm.add_watch(handler.file_path, mask)
 notifier.loop()
