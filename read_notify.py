@@ -15,9 +15,9 @@ class EventHandler (pyinotify.ProcessEvent):
         super(EventHandler, self).__init__(*args, **kwargs)
         self.file_path = file_path
         self._last_position = 0
-        self.statsd_host = 'statsd.us-west-2.prod-p.expedia.com'
+        self.statsd_host = '<statsd-server'
         self.statsd_port = 8125
-        self.prefix = 'mongodb.reviewsbrandsummary.ip-10-8-134-81'
+        self.prefix = 'mongodb.reviewsbrandsummary.<ip-address>'
         self.metrics = 'responsetime'
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         logpats = r'QUERY'

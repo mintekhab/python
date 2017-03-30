@@ -36,12 +36,12 @@ def main(argv):
     options, arguments = p.parse_args()
 
 # TODO when running script:::: change the mongo username/password
-    username='loader-app'
-    password='f00b@r2012'
+    username='<username>'
+    password='<password>'
 
 # establish a connection to the local mongo database
-    client=MongoClient('10.2.65.32',read_preference=pymongo.ReadPreference.SECONDARY,slaveOk=True)
-    db=client['expedia-reviews']
+    client=MongoClient('<ipaddress>',read_preference=pymongo.ReadPreference.SECONDARY,slaveOk=True)
+    db=client['<dbname>']
     db.authenticate(username, password, mechanism='MONGODB-CR')
 
     filr = options.file

@@ -10,10 +10,10 @@ print datetime.utcnow()
 ##regx = re.compile("^0.+", re.IGNORECASE)
 counter = 0
 valProd = 0
-conn = Connection(host="10.8.6.6",port=27017)
-connPrim = Connection(host="10.8.135.97",port=27017)
-dbh = conn ['expedia-reviews']
-dbp = connPrim ['expedia-reviews']
+conn = Connection(host="<paddress>",port=27017)
+connPrim = Connection(host="<ipaddress>",port=27017)
+dbh = conn ['<dbname>']
+dbp = connPrim ['dbname>']
 assert dbh.connection == conn
 assert dbp.connection == connPrim
 
@@ -21,11 +21,11 @@ assert dbp.connection == connPrim
 
 db = conn['admin']
 dbauth = connPrim['admin']
-if dbauth.authenticate('reviews','expedia123'):
+if dbauth.authenticate('<username>','<password>'):
    dbh.read_preference = pymongo.ReadPreference.PRIMARY
    valProd = 1
    
-if db.authenticate('reviews','expedia123'):
+if db.authenticate('<username>','<password>'):
    dbh.read_preference = pymongo.ReadPreference.SECONDARY
 
 file = '/home/mintekhab/inputsbr.in'

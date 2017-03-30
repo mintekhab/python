@@ -13,15 +13,14 @@ import sys
 
 print "*********start ****************"
 print datetime.utcnow()
-serviceurl='http://rtr-elasticsearch.prod.expedia.com/hotel/_search?'
-
-conn = MongoClient('10.8.134.15:27017',replicaSet='reviews',readPreference='secondaryPreferred')
+serviceurl='<elastic url>'
+conn = MongoClient('<ipaddress>:27017',replicaSet='reviews',readPreference='secondaryPreferred')
 dbh = conn ['expedia-reviews']
 assert dbh.connection == conn
 
 ### Authenticate ####
 db = conn['admin']
-if db.authenticate('reviews','expedia123'):
+if db.authenticate('<username>','<apssword>'):
    print "Authenticated"
 
 filw = '/home/mintekhab/data.out'

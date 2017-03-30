@@ -37,7 +37,7 @@ def main(argv):
     filw = options.outf
     logfile = options.logf
 
-    serviceurl='http://rtr-elasticsearch.prod.expedia.com/hotel/_search?'
+    serviceurl='<url>'
     count = 0
     modrec = 10
     try:
@@ -56,18 +56,6 @@ def main(argv):
             timedelta = updatedate - createdate
             if timedelta.total_seconds() > 1800 :
                 fout.write(json.dumps(doc,default=json_util.default,sort_keys=False)+'\n')
-                #obj = 'id:'+str(doc['_id']['$oid'])
-                #query = {"query": {"match": {'id':str(doc['_id']['$oid'])}}}
-                #query = json.dumps(query)
-                #response = urllib.urlopen(serviceurl,query)
-                #data = json.loads(response.read())
-                #print data['hits']['total']
-                #try:
-                #    if data['hits']['total'] > 0 :
-                #       fout.write(json.dumps(doc,default=json_util.default,sort_keys=False)+'\n')
-                #except:
-                #    js = None
-                    #print 'in elastic search error'
         fout.close()
         frin.close()
         logf.close()

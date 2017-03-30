@@ -42,25 +42,25 @@ def main(argv):
     count = 0
     rec_cnt = options.rec_cnt
     # TODO when running script:::: change the mongo username/password
-    username='rtrflights'
-    password='expedia123'
+    username='<username>'
+    password='<password>'
 
     # establish a connection to the local mongo database
-    #client=MongoClient('10.8.6.167.',read_preference=pymongo.ReadPreference.SECONDARY,slaveOk=True)
-    client=MongoClient('10.2.65.33',27018)
-    dbs=client['expedia-reviews']
+    #client=MongoClient('<ipaddress>',read_preference=pymongo.ReadPreference.SECONDARY,slaveOk=True)
+    client=MongoClient('<ipaddress>',27018)
+    dbs=client['<dbname>']
     dbs.authenticate(username, password, mechanism='SCRAM-SHA-1')
 
-    #Prim=MongoClient('10.9.40.95',read_preference=pymongo.ReadPreference.PRIMARY,slaveOk=False)
-    Prim=MongoClient('10.2.65.33',27018)
-    db=Prim['expedia-reviews']
+    #Prim=MongoClient('<ipaddress>',read_preference=pymongo.ReadPreference.PRIMARY,slaveOk=False)
+    Prim=MongoClient('<ipaddress>',27018)
+    db=Prim['']
     db.authenticate(username, password, mechanism='SCRAM-SHA-1')
     try:
         rec = 0
         frin = open(filr,'r')
         fout = codecs.open(filw,mode='a',encoding='utf-8')
         logf = codecs.open(logfile,mode='a',encoding='utf-8')
-        out_query="db = db.getSiblingDB('expedia-reviews');"
+        out_query="db = db.getSiblingDB('<dbname>');"
         fout.write(out_query + "\n")
         for row in csv.DictReader(frin, dialect='piper'):
             #print (row['pi'],row['tuid'],row['dd'],row['tid'])

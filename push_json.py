@@ -33,11 +33,10 @@ def optional_arg(arg_default):
 def request_push(endpoint,row):
     try:
         print(row)
-        list_url = {'test':'https://collector.test.expedia.com','int':'https://collector.int.expedia.com','prod':'https://collector.prod.expedia.com','pci':'https://collector-pci.prod-p.expedia.com'}
+        list_url = {'test':'<url>'}
         request_url = list_url[endpoint]
         request_url = request_url+ "/SterlingRewardsProc.json?stream=true&persist=true&rollup=Day&batch=false"
         request_headers = {'Content-Type': 'application/json'}
-        #request_data = {'ProcName': 'SterlingMemberOfferCodeGet#4','execution_count':1107379030,'total_physical_reads':23054946,'min_physical_reads':0,'max_physical_reads':136,'total_logical_writes': 0,'min_logical_writes': 0,'max_logical_writes': 0,'total_logical_reads':9332892584,'min_logical_reads':4,'max_logical_reads':131,'total_elapsed_time':358462469284,'min_elapsed_time': 45,'max_elapsed_time':50052844}
         request_data = row
         r = requests.post(request_url,data=json.dumps(request_data),headers=request_headers)
         print r.status_code
@@ -160,7 +159,7 @@ def main(agrv):
     
     p = optparse.OptionParser(usage="usage: %prog -s [d|f] [options]", version="%prog 1.0")   
     p.add_option('-s', '--datasrc', action='store', type='string', dest='datasrc', default=None, help='source for data ingestion acceptable values are d and f ')
-    p.add_option('-H', '--servername', action='store', type='string', dest='servername', default='CHWXSQLNRT010.datawarehouse.expecn.com', help='The servername which houses the Database ')
+    p.add_option('-H', '--servername', action='store', type='string', dest='servername', default='', help='The servername which houses the Database ')
     p.add_option('-D', '--dbname', action='store', type='string', dest='dbname', default='SterlingRewards', help='The database to ingest data from ')
     p.add_option('-P', '--port', action='store', type='int', dest='port', default=1433, help='The port on which the database is runnung on default is 1433')
     p.add_option('-u', '--user', action='store', type='string', dest='user', default=None, help='The username to connect the database')

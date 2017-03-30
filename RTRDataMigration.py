@@ -6,16 +6,16 @@ import json
 from pymongo import MongoClient
 
 # TODO when running script:::: change the mongo username/password
-username='loader-app'
-password='f00b@r2012'
+username='<username>'
+password='password>'
 # establish a connection to the local mongo database
 client=MongoClient('localhost')
-db=client['expedia-reviews']
+db=client['<dbname>']
 db.authenticate(username, password, mechanism='MONGODB-CR')
 tracker = db.RTRResponseTracker
 
 # TODO when running script:::: change the base URL as per environment
-baseURL="http://rtr.reviews.prod-p.expedia.com/"
+baseURL="<elasticurl>"
 #baseURL="http://privileged.test.reviewsvc.expedia.com/"
 
 def migrateData():
